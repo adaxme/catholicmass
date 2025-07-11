@@ -56,55 +56,6 @@ function App() {
               selectedLanguage={selectedLanguage}
             />
           </div>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="max-w-md mx-auto">
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">{t('todaysLiturgy')}</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-slate-600">{t('liturgicalSeason')}</span>
-                <span className="text-slate-800 font-medium">{t('ordinaryTime')}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-600">{t('liturgicalColor')}</span>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                  <span className="text-slate-800 font-medium">{t('green')}</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-600">{t('rank')}</span>
-                <span className="text-slate-800 font-medium">{t('weekday')}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-slate-800 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Heart className="w-5 h-5 text-red-400" />
-              <span className="text-slate-300">{t('madeWithLove')}</span>
-            </div>
-            <p className="text-slate-400 text-sm">
-              {t('readingsCourtesy')}
-            </p>
-            <p className="text-slate-500 text-xs mt-2">
-              {t('scriptureQuote')}
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-export default App;
             <ReadingsSection onReadingsChange={setReadings} language={selectedLanguage} />
           </div>
 
@@ -134,3 +85,5 @@ export default App;
               </div>
             </div>
           </div>
+  )
+}
