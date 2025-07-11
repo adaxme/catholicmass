@@ -28,7 +28,7 @@ export function SaintSection({ date, language }: SaintSectionProps) {
       const saintData = await geminiService.getSaintOfTheDay(date);
       setSaint(saintData);
     } catch (err) {
-      setError(t('failedToLoad') + ' saint information');
+      setError(err instanceof Error ? err.message : t('failedToLoad') + ' saint information');
       console.error('Error loading saint:', err);
       // Fallback saint data
       setSaint({

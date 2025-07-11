@@ -84,7 +84,7 @@ Begin with "Dear brothers and sisters in Christ" (or equivalent greeting in ${la
       return response.text();
     } catch (error) {
       console.error('Error generating homily:', error);
-      throw new Error('Failed to generate homily. Please try again.');
+      throw error instanceof Error ? error : new Error('Failed to generate homily. Please try again.');
     }
   }
 
@@ -149,7 +149,7 @@ Please ensure all information is historically accurate and reflects official Cat
       };
     } catch (error) {
       console.error('Error fetching saint information:', error);
-      throw error;
+      throw error instanceof Error ? error : new Error('Failed to fetch saint information. Please try again.');
     }
   }
 
@@ -185,7 +185,7 @@ Please provide only the translation without any additional commentary.
       return response.text();
     } catch (error) {
       console.error('Error translating text:', error);
-      throw new Error('Failed to translate text. Please try again.');
+      throw error instanceof Error ? error : new Error('Failed to translate text. Please try again.');
     }
   }
 
