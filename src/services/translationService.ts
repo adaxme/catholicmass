@@ -5,8 +5,13 @@ interface TranslationCache {
   [key: string]: { [lang: string]: string };
 }
 
+interface UIElementsCache {
+  [lang: string]: { [key: string]: string };
+}
+
 class TranslationService {
   private cache: TranslationCache = {};
+  private uiElementsCache: UIElementsCache = {};
   private currentLanguage: Language = 'en';
 
   setLanguage(language: Language) {
@@ -48,6 +53,11 @@ class TranslationService {
       return this.getEnglishUIElements();
     }
 
+    // Check if UI elements for this language are already cached
+    if (this.uiElementsCache[targetLanguage]) {
+      return this.uiElementsCache[targetLanguage];
+    }
+
     const englishElements = this.getEnglishUIElements();
     const translatedElements: { [key: string]: string } = {};
 
@@ -60,6 +70,9 @@ class TranslationService {
         translatedElements[key] = text; // Fallback to English
       }
     }
+
+    // Cache the complete set of translated UI elements
+    this.uiElementsCache[targetLanguage] = translatedElements;
 
     return translatedElements;
   }
