@@ -40,46 +40,46 @@ function App() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Readings Section - Full Width */}
-        <div className="mb-8">
-          <ReadingsSection onReadingsChange={setReadings} language={selectedLanguage} />
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left Column - Readings (spans 2 columns on large screens) */}
+          <div className="lg:col-span-2">
+            <ReadingsSection onReadingsChange={setReadings} language={selectedLanguage} />
+          </div>
 
-        {/* Saint and Homily Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <div>
+          {/* Right Column - Saint and Quick Stats */}
+          <div className="space-y-8">
             <SaintSection date={currentDate} language={selectedLanguage} />
-          </div>
-          <div>
-            <HomilySection 
-              readings={readings} 
-              selectedLanguage={selectedLanguage}
-            />
-          </div>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="max-w-md mx-auto">
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">{t('todaysLiturgy')}</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-slate-600">{t('liturgicalSeason')}</span>
-                <span className="text-slate-800 font-medium">{t('ordinaryTime')}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-600">{t('liturgicalColor')}</span>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                  <span className="text-slate-800 font-medium">{t('green')}</span>
+            
+            {/* Quick Stats */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="text-lg font-semibold text-slate-800 mb-4">{t('todaysLiturgy')}</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">{t('liturgicalSeason')}</span>
+                  <span className="text-slate-800 font-medium">{t('ordinaryTime')}</span>
                 </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-600">{t('rank')}</span>
-                <span className="text-slate-800 font-medium">{t('weekday')}</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">{t('liturgicalColor')}</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                    <span className="text-slate-800 font-medium">{t('green')}</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-600">{t('rank')}</span>
+                  <span className="text-slate-800 font-medium">{t('weekday')}</span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Homily Section - Full Width Below */}
+        <div className="mt-8">
+          <HomilySection 
+            readings={readings} 
+            selectedLanguage={selectedLanguage}
+          />
         </div>
       </main>
 
