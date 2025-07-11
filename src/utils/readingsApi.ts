@@ -1,5 +1,30 @@
 import { ReadingData } from '../types';
 
+// Function to clean HTML tags and decode HTML entities
+function cleanText(text: string): string {
+  // Remove HTML tags
+  let cleaned = text.replace(/<[^>]*>/g, '');
+  
+  // Decode common HTML entities
+  cleaned = cleaned
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#160;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'");
+  
+  // Remove extra whitespace and clean up formatting
+  cleaned = cleaned
+    .replace(/\s+/g, ' ')
+    .replace(/\n\s*\n/g, '\n\n')
+    .trim();
+  
+  return cleaned;
+}
+
 export async function fetchReadings(date?: Date): Promise<ReadingData> {
   return new Promise<ReadingData>((resolve, reject) => {
     const script = document.createElement('script');
@@ -26,6 +51,39 @@ export async function fetchReadings(date?: Date): Promise<ReadingData> {
     // Define the callback function
     (window as any)[uniqueCallbackName] = (data: ReadingData) => {
       clearTimeout(timeout);
+      
+      // Clean all text content
+      const cleanedData = {
+        ...data,
+        Mass_R1: {
+          ...data.Mass_R1,
+          text: cleanText(data.Mass_R1.text),
+          source: cleanText(data.Mass_R1.source)
+        },
+        Mass_Ps: {
+          ...data.Mass_Ps,
+          text: cleanText(data.Mass_Ps.text),
+          source: cleanText(data.Mass_Ps.source)
+        },
+        Mass_R2: data.Mass_R2 ? {
+          ...data.Mass_R2,
+          text: cleanText(data.Mass_R2.text),
+          source: cleanText(data.Mass_R2.source)
+        } : undefined,
+        Mass_GA: {
+          ...data.Mass_GA,
+          text: cleanText(data.Mass_GA.text),
+          source: cleanText(data.Mass_GA.source)
+        },
+        Mass_G: {
+          ...data.Mass_G,
+          text: cleanText(data.Mass_G.text),
+          source: cleanText(data.Mass_G.source)
+        },
+        day: cleanText(data.day)
+      };
+      
+      resolve(cleanedData);
       resolve(data);
       delete (window as any)[uniqueCallbackName];
       if (document.body.contains(script)) {

@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "android": "cap run android",
+    "android:build": "npm run build && cap sync android && cap open android",
+    "capacitor:sync": "cap sync",
+    "capacitor:build": "npm run build && cap sync"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
