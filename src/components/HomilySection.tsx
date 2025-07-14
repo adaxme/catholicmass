@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lightbulb, RefreshCw, Sparkles, AlertCircle, Key, ExternalLink } from 'lucide-react';
 import { ReadingData, Homily, Language } from '../types';
 import { getLanguageName } from '../utils/languages';
