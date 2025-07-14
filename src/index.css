@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+}
+
+@layer components {
+  .reading-text {
+    @apply text-slate-300 leading-relaxed;
+  }
+  
+  .reading-text p {
+    @apply mb-4;
+  }
+  
+  .reading-verse {
+    @apply font-medium text-amber-200;
+  }
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  .mobile-padding {
+    @apply px-4 py-6;
+  }
+  
+  .mobile-text {
+    @apply text-sm leading-6;
+  }
+  
+  .mobile-card {
+    @apply mx-2 mb-4;
+  }
+}
+
+/* PWA styles for mobile app feel */
+@media (display-mode: standalone) {
+  body {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
