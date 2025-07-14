@@ -10,16 +10,16 @@ class GeminiService {
   }
 
   private initializeAPI() {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    const apiKey = 'AIzaSyAcDVH3NfuTIsmV31dNYwIv7uluD3-6Bvk';
     
     if (!apiKey) {
-      console.warn('Gemini API key not found. Please set VITE_GEMINI_API_KEY in your .env file');
+      console.warn('Gemini API key not found');
       return;
     }
 
     try {
       this.genAI = new GoogleGenerativeAI(apiKey);
-      this.model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      this.model = this.genAI.getGenerativeModel({ model: 'gemini-1.0-pro' });
     } catch (error) {
       console.error('Failed to initialize Gemini API:', error);
     }
@@ -150,42 +150,6 @@ Please ensure all information is historically accurate and reflects official Cat
     } catch (error) {
       console.error('Error fetching saint information:', error);
       throw error instanceof Error ? error : new Error('Failed to fetch saint information. Please try again.');
-    }
-  }
-
-  async translateText(text: string, targetLanguage: Language): Promise<string> {
-    if (!this.model) {
-      throw new Error('Gemini API not initialized. Please check your API key.');
-    }
-
-    const languageNames = {
-      en: 'English',
-      es: 'Spanish',
-      fr: 'French',
-      la: 'Latin',
-      pt: 'Portuguese',
-      de: 'German'
-    };
-
-    const prompt = `
-Translate the following Catholic homily text to ${languageNames[targetLanguage]}. 
-Maintain the spiritual tone, theological accuracy, and reverent language appropriate for Catholic liturgy.
-Preserve any biblical references and Catholic terminology correctly.
-Keep the same structure and formatting.
-
-Text to translate:
-${text}
-
-Please provide only the translation without any additional commentary.
-`;
-
-    try {
-      const result = await this.model.generateContent(prompt);
-      const response = await result.response;
-      return response.text();
-    } catch (error) {
-      console.error('Error translating text:', error);
-      throw error instanceof Error ? error : new Error('Failed to translate text. Please try again.');
     }
   }
 
