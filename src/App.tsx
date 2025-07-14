@@ -14,18 +14,18 @@ function App() {
   const { t } = useTranslation(selectedLanguage);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 text-white shadow-xl">
+      <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white shadow-2xl border-b border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="bg-white/20 p-3 rounded-full">
+              <div className="bg-amber-900/30 p-3 rounded-full border border-amber-700/50">
                 <Cross className="w-8 h-8 text-amber-200" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold">{t('appTitle')}</h1>
-                <p className="text-blue-100 mt-1">
+                <p className="text-slate-300 mt-1">
                   {t('appSubtitle')}
                 </p>
               </div>
@@ -51,23 +51,23 @@ function App() {
             <SaintSection date={currentDate} language={selectedLanguage} />
             
             {/* Quick Stats */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-slate-800 mb-4">{t('todaysLiturgy')}</h3>
+            <div className="bg-slate-900 rounded-xl shadow-2xl p-6 border border-slate-700">
+              <h3 className="text-lg font-semibold text-slate-200 mb-4">{t('todaysLiturgy')}</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-600">{t('liturgicalSeason')}</span>
-                  <span className="text-slate-800 font-medium">{t('ordinaryTime')}</span>
+                  <span className="text-slate-400">{t('liturgicalSeason')}</span>
+                  <span className="text-slate-200 font-medium">{t('ordinaryTime')}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-600">{t('liturgicalColor')}</span>
+                  <span className="text-slate-400">{t('liturgicalColor')}</span>
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                    <span className="text-slate-800 font-medium">{t('green')}</span>
+                    <span className="text-slate-200 font-medium">{t('green')}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-600">{t('rank')}</span>
-                  <span className="text-slate-800 font-medium">{t('weekday')}</span>
+                  <span className="text-slate-400">{t('rank')}</span>
+                  <span className="text-slate-200 font-medium">{t('weekday')}</span>
                 </div>
               </div>
             </div>
@@ -84,11 +84,11 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-800 text-white mt-16">
+      <footer className="bg-slate-900 text-white mt-16 border-t border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Heart className="w-5 h-5 text-red-400" />
+              <Heart className="w-5 h-5 text-amber-400" />
               <span className="text-slate-300">{t('madeWithLove')}</span>
             </div>
             <p className="text-slate-400 text-sm">

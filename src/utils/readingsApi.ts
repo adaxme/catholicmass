@@ -14,7 +14,16 @@ function cleanText(text: string): string {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'");
+    .replace(/&apos;/g, "'")
+    .replace(/&#x2010;/g, '–')
+    .replace(/&#x2013;/g, '–')
+    .replace(/&#x2014;/g, '—')
+    .replace(/&#x2018;/g, ''')
+    .replace(/&#x2019;/g, ''')
+    .replace(/&#x201c;/g, '"')
+    .replace(/&#x201d;/g, '"')
+    .replace(/&#xa9;/g, '©')
+    .replace(/&#xa0;/g, ' ');
   
   // Remove extra whitespace and clean up formatting
   cleaned = cleaned
@@ -84,7 +93,6 @@ export async function fetchReadings(date?: Date): Promise<ReadingData> {
       };
       
       resolve(cleanedData);
-      resolve(data);
       delete (window as any)[uniqueCallbackName];
       if (document.body.contains(script)) {
         document.body.removeChild(script);
