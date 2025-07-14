@@ -19,7 +19,9 @@ function cleanText(text: string): string {
     .replace(/&#x2013;/g, '–')
     .replace(/&#x2014;/g, '—')
     .replace(/&#x2018;/g, ''')
+    )
     .replace(/&#x2019;/g, ''')
+    )
     .replace(/&#x201c;/g, '"')
     .replace(/&#x201d;/g, '"')
     .replace(/&#xa9;/g, '©')
@@ -46,7 +48,7 @@ export async function fetchReadings(date?: Date): Promise<ReadingData> {
     },
     Mass_Ps: {
       source: 'Psalm 69:8-10,14',
-      text: 'It is for you that I suffer taunts, that shame covers my face. I have become a stranger to my brothers, an alien to my own mother's sons. Zeal for your house devours me and the taunts of those who taunt you fall on me.'
+      text: 'It is for you that I suffer taunts, that shame covers my face. I have become a stranger to my brothers, an alien to my own mother\'s sons. Zeal for your house devours me and the taunts of those who taunt you fall on me.'
     },
     Mass_GA: {
       source: 'Matthew 11:25',
